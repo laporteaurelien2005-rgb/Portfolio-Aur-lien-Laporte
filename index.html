@@ -239,7 +239,7 @@
     .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; grid-column: 1 / -1; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
     .tag { background: var(--light); color: var(--navy); font-size: 0.7rem; font-weight: 700; padding: 5px 12px; border: 1px solid var(--border); letter-spacing: 0.04em; }
 
-    /* CONTACT */
+    /* CONTACT MODIFIÉ */
     #contact { background: var(--navy); padding: 110px 60px; }
     #contact .section-title { color: var(--white); }
     .contact-layout { display: grid; grid-template-columns: 5fr 6fr; gap: 96px; align-items: start; }
@@ -250,7 +250,11 @@
     .contact-item-val { color: #9cb0c8; font-size: 0.92rem; }
     .contact-item-val a { color: #9cb0c8; text-decoration: none; transition: color .2s; }
     .contact-item-val a:hover { color: var(--gold-lt); }
-    .form-group { margin-bottom: 18px; }
+
+    .form-group-row { display: flex; gap: 18px; margin-bottom: 18px; }
+    .form-group-row .form-group { margin-bottom: 0; flex: 1; }
+
+    .form-group { margin-bottom: 18px; width: 100%; }
     .form-group label { display: block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(138,160,184,.6); margin-bottom: 8px; }
     .form-group input, .form-group textarea {
       width: 100%; padding: 13px 16px;
@@ -260,9 +264,9 @@
     }
     .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); background: rgba(255,255,255,.07); }
     .form-group textarea { resize: vertical; min-height: 130px; }
+    
     .submit-btn { padding: 15px 36px; background: var(--gold); color: var(--navy); font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; border: none; cursor: none; transition: background .2s, transform .2s; }
     .submit-btn:hover { background: var(--gold-lt); transform: translateY(-2px); }
-    .submit-btn.success { background: #2a7a4b; }
 
     /* FOOTER */
     footer { background: #040d15; padding: 28px 60px; display: flex; align-items: center; justify-content: space-between; }
@@ -279,17 +283,10 @@
     .reveal-left.visible { opacity: 1; transform: none; }
     .reveal-right { opacity: 0; transform: translateX(32px); transition: opacity .7s ease, transform .7s ease; }
     .reveal-right.visible { opacity: 1; transform: none; }
-    .delay-1 { transition-delay: .1s; } .delay-2 { transition-delay: .2s; } .delay-3 { transition-delay: .3s; }
-
-    /* PROGRESS BAR */
-    .progress-bar { position: fixed; top: 0; left: 0; height: 2px; background: var(--gold); z-index: 1000; width: 0; transition: width .1s; }
 
     /* RESPONSIVE */
-    @media (max-width: 1024px) {
-      .skills-grid { grid-template-columns: repeat(2, 1fr); }
-      .formation-layout { grid-template-columns: 1fr; gap: 48px; }
-    }
     @media (max-width: 768px) {
+      .form-group-row { flex-direction: column; gap: 18px; }
       nav { padding: 0 24px; }
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
@@ -302,7 +299,6 @@
       .about-layout { grid-template-columns: 1fr; gap: 40px; }
       .skills-grid { grid-template-columns: 1fr; }
       .contact-layout { grid-template-columns: 1fr; gap: 48px; }
-      footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
     }
   </style>
 </head>
@@ -310,7 +306,6 @@
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
-<div class="progress-bar" id="progressBar"></div>
 
 <nav id="mainNav">
   <a href="#hero" class="nav-logo">Aurélien <em>L.</em></a>
@@ -326,14 +321,6 @@
     <span></span><span></span><span></span>
   </div>
 </nav>
-
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#apropos" class="mm-link">À propos</a>
-  <a href="#competences" class="mm-link">Compétences</a>
-  <a href="#formation" class="mm-link">Formation</a>
-  <a href="#experiences" class="mm-link">Expériences</a>
-  <a href="#contact" class="mm-link">Contact</a>
-</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -351,11 +338,9 @@
   </div>
   <div class="hero-right">
     <div class="hero-photo-wrap">
-        <!-- PHOTO RÉCUPÉRÉE DU 2EME CODE -->
         <img src="IMG_4833.JPG" alt="Aurélien Laporte" class="hero-photo">
     </div>
   </div>
-  
   <div class="scroll-cue">
     <div class="scroll-cue-line"></div>
     <span>Défiler</span>
@@ -374,13 +359,12 @@
         <p class="about-lead">Étudiant en troisième année de DCG en formation initiale, je rejoindrai le cabinet COGEC à Soissons en alternance dès septembre 2026 pour préparer le DSCG.</p>
         <div class="about-body">
           <p>Mon parcours académique en DCG m'a permis de développer des bases solides en comptabilité générale, fiscalité et gestion, renforcées par 9 semaines de stage au cabinet COGEC. Cette expérience concrète m'a confirmé ma vocation pour le métier de comptable.</p>
-          <p>Rigoureux, organisé et curieux, j'apporte également une sensibilité aux outils numériques, que j'exploite dans mes projets personnels (Welyb, Amicompta, IsaCompta) et mes travaux académiques.</p>
+          <p>Rigoureux, organisé et curieux, j'apporte également une sensibilité aux outils numériques, que j'exploite dans mes projets personnels et mes travaux académiques.</p>
         </div>
         <div class="about-info">
           <div class="about-row"><span class="about-key">Localisation</span><span class="about-val">Braine (02), Aisne</span></div>
           <div class="about-row"><span class="about-key">Formation</span><span class="about-val">DCG initial — 3ᵉ année (Bac+3)</span></div>
           <div class="about-row"><span class="about-key">Alternance</span><span class="about-val">DSCG chez COGEC · sept. 2026 ✓</span></div>
-          <div class="about-row"><span class="about-key">Cabinet</span><span class="about-val">COGEC — Soissons</span></div>
         </div>
       </div>
       <div class="about-sidebar reveal delay-2">
@@ -394,10 +378,6 @@
           <span class="atout-badge">Sens du détail</span>
           <span class="atout-badge">Autonomie</span>
           <span class="atout-badge">Esprit d'équipe</span>
-          <span class="atout-badge">Adaptabilité</span>
-          <span class="atout-badge">Curiosité</span>
-          <span class="atout-badge">Communication</span>
-          <span class="atout-badge">Fiabilité</span>
         </div>
       </div>
     </div>
@@ -412,17 +392,13 @@
       <h2 class="section-title">Compétences</h2>
     </div>
     <div class="skills-grid">
-      <div class="skill-card reveal delay-1">
+      <div class="skill-card reveal">
         <span class="skill-icon">📒</span>
         <h3>Comptabilité Générale</h3>
         <div class="skill-bar-wrap">
           <div class="skill-item">
             <div class="skill-label"><span>Saisie & journaux</span><span>65%</span></div>
-            <div class="skill-track"><div class="skill-fill" style="--w:0.65"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label"><span>Bilan & compte de résultat</span><span>50%</span></div>
-            <div class="skill-track"><div class="skill-fill" style="--w:0.50"></div></div>
+            <div class="skill-track"><div class="skill-fill" style="transform: scaleX(0.65)"></div></div>
           </div>
         </div>
       </div>
@@ -432,11 +408,7 @@
         <div class="skill-bar-wrap">
           <div class="skill-item">
             <div class="skill-label"><span>Excel / tableurs</span><span>88%</span></div>
-            <div class="skill-track"><div class="skill-fill" style="--w:0.88"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label"><span>Welyb / Amicompta</span><span>80%</span></div>
-            <div class="skill-track"><div class="skill-fill" style="--w:0.80"></div></div>
+            <div class="skill-track"><div class="skill-fill" style="transform: scaleX(0.88)"></div></div>
           </div>
         </div>
       </div>
@@ -445,12 +417,8 @@
         <h3>Langues</h3>
         <div class="skill-bar-wrap">
           <div class="skill-item">
-            <div class="skill-label"><span>Français</span><span>Natif</span></div>
-            <div class="skill-track"><div class="skill-fill" style="--w:1"></div></div>
-          </div>
-          <div class="skill-item">
             <div class="skill-label"><span>Anglais</span><span>B2</span></div>
-            <div class="skill-track"><div class="skill-fill" style="--w:0.72"></div></div>
+            <div class="skill-track"><div class="skill-fill" style="transform: scaleX(0.72)"></div></div>
           </div>
         </div>
       </div>
@@ -473,14 +441,13 @@
             <div class="tl-date">2023 – Actuellement</div>
             <div class="tl-title">Diplôme de Comptabilité et de Gestion (DCG)</div>
             <div class="tl-place">Formation initiale · 3ᵉ année</div>
-            <div class="tl-desc">Formation Bac+3 couvrant la comptabilité, le droit, la fiscalité, le management et le contrôle de gestion.</div>
           </div>
         </div>
       </div>
       <div class="reveal-right">
         <div style="padding: 24px 28px; background: linear-gradient(135deg, rgba(201,168,76,.08), transparent); border: 1px solid rgba(201,168,76,.25);">
           <div class="tl-date">Septembre 2026 — Confirmé ✓</div>
-          <div class="tl-title" style="font-size:1.05rem;">DSCG — Diplôme Supérieur de Comptabilité et de Gestion</div>
+          <div class="tl-title">DSCG — Diplôme Supérieur de Comptabilité et de Gestion</div>
           <div class="tl-place">En alternance au cabinet COGEC · Soissons</div>
         </div>
       </div>
@@ -512,7 +479,7 @@
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- CONTACT CORRIGÉ -->
 <section id="contact">
   <div class="section-inner">
     <div class="section-header reveal">
@@ -531,9 +498,30 @@
         </div>
       </div>
       <div class="form-wrap reveal-right">
+        <!-- FORMULAIRE CORRIGÉ SELON L'IMAGE -->
         <form id="contactForm" action="https://formspree.io/f/mrejpown" method="POST">
-          <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="jean.dupont@email.fr" required></div>
-          <div class="form-group"><label>Message</label><textarea name="message" placeholder="Bonjour Aurélien…" required></textarea></div>
+          <div class="form-group-row">
+            <div class="form-group">
+                <label>Prénom</label>
+                <input type="text" name="firstname" placeholder="Jean" required>
+            </div>
+            <div class="form-group">
+                <label>Nom</label>
+                <input type="text" name="lastname" placeholder="Dupont" required>
+            </div>
+          </div>
+          <div class="form-group">
+              <label>Email</label>
+              <input type="email" name="email" placeholder="jean.dupont@cabinet.fr" required>
+          </div>
+          <div class="form-group">
+              <label>Objet</label>
+              <input type="text" name="subject" placeholder="Opportunité professionnelle" required>
+          </div>
+          <div class="form-group">
+              <label>Message</label>
+              <textarea name="message" placeholder="Bonjour Aurélien…" required></textarea>
+          </div>
           <button type="submit" class="submit-btn" id="submitBtn">Envoyer le message</button>
         </form>
       </div>
@@ -547,7 +535,6 @@
 </footer>
 
 <script>
-  /* CURSOR */
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   let mx = 0, my = 0, rx = 0, ry = 0;
@@ -555,34 +542,14 @@
   function animRing() { rx += (mx-rx)*.12; ry += (my-ry)*.12; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animRing); }
   animRing();
 
-  /* NAV SCROLL */
   const nav = document.getElementById('mainNav');
   window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
 
-  /* REVEAL ANIMATIONS */
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => io.observe(el));
-
-  /* SKILL BARS */
-  const skillIo = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('animated');
-        e.target.querySelectorAll('.skill-fill').forEach(fill => {
-          const w = fill.style.getPropertyValue('--w');
-          fill.style.transform = `scaleX(${w})`;
-        });
-      }
-    });
-  }, { threshold: 0.3 });
-  document.querySelectorAll('.skill-card').forEach(c => skillIo.observe(c));
-
-  /* HAMBURGER */
-  const ham = document.getElementById('hamburger');
-  const mob = document.getElementById('mobileMenu');
-  ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); });
 </script>
+
 </body>
 </html>

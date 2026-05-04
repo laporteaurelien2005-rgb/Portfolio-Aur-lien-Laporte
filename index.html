@@ -384,7 +384,12 @@
   </div>
   <div class="hero-right">
     <div class="hero-photo-wrap">
-      <img src="IMG_4833.JPG" alt="Aurélien Laporte" class="hero-photo">
+      <div class="hero-photo-placeholder">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+        <span>Photo</span>
+      </div>
     </div>
   </div>
   
@@ -722,14 +727,14 @@
         </div>
       </div>
       <div class="form-wrap reveal-right">
-        <form id="contactForm">
+        <form id="contactForm" action="https://formspree.io/f/mrejpown" method="POST">
           <div class="form-row">
-            <div class="form-group"><label>Prénom</label><input type="text" placeholder="Jean" required></div>
-            <div class="form-group"><label>Nom</label><input type="text" placeholder="Dupont" required></div>
+            <div class="form-group"><label>Prénom</label><input type="text" name="prénom" placeholder="Jean" required></div>
+            <div class="form-group"><label>Nom</label><input type="text" name="nom" placeholder="Dupont" required></div>
           </div>
-          <div class="form-group"><label>Email</label><input type="email" placeholder="jean.dupont@cabinet.fr" required></div>
-          <div class="form-group"><label>Objet</label><input type="text" placeholder="Opportunité professionnelle" required></div>
-          <div class="form-group"><label>Message</label><textarea placeholder="Bonjour Aurélien…" required></textarea></div>
+          <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="jean.dupont@cabinet.fr" required></div>
+          <div class="form-group"><label>Objet</label><input type="text" name="objet" placeholder="Opportunité professionnelle" required></div>
+          <div class="form-group"><label>Message</label><textarea name="message" placeholder="Bonjour Aurélien…" required></textarea></div>
           <div class="form-submit">
             <button type="submit" class="submit-btn" id="submitBtn">Envoyer le message</button>
           </div>
@@ -807,13 +812,31 @@
   }, { threshold: 0.3 });
   document.querySelectorAll('.skill-card').forEach(c => skillIo.observe(c));
 
-  /* FORM */
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
+  /* FORM — Formspree */
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
-    btn.textContent = 'Message envoyé ✓';
-    btn.classList.add('success');
-    setTimeout(() => { btn.textContent = 'Envoyer le message'; btn.classList.remove('success'); }, 4000);
+    btn.textContent = 'Envoi en cours…';
+    btn.disabled = true;
+    try {
+      const response = await fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        btn.textContent = 'Message envoyé ✓';
+        btn.classList.add('success');
+        this.reset();
+        setTimeout(() => { btn.textContent = 'Envoyer le message'; btn.classList.remove('success'); btn.disabled = false; }, 5000);
+      } else {
+        btn.textContent = 'Erreur — réessayez';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Erreur réseau';
+      btn.disabled = false;
+    }
   });
 </script>
 </body>

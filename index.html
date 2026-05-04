@@ -239,18 +239,10 @@
     .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; grid-column: 1 / -1; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
     .tag { background: var(--light); color: var(--navy); font-size: 0.7rem; font-weight: 700; padding: 5px 12px; border: 1px solid var(--border); letter-spacing: 0.04em; }
 
-    /* CONTACT ALIGNÉ - MODIFICATIONS ICI */
+    /* CONTACT MODIFIÉ */
     #contact { background: var(--navy); padding: 110px 60px; }
     #contact .section-title { color: var(--white); }
-    
-    .contact-layout { 
-      display: grid; 
-      grid-template-columns: 5fr 6fr; 
-      gap: 96px; 
-      align-items: flex-start; /* Aligne le haut du formulaire avec le haut des textes */
-      margin-top: -20px;       /* Remonte l'ensemble du bloc pour équilibrer avec le titre */
-    }
-
+    .contact-layout { display: grid; grid-template-columns: 5fr 6fr; gap: 96px; align-items: start; }
     .contact-intro { color: rgba(138,160,184,.75); font-size: 0.95rem; line-height: 1.85; margin-bottom: 48px; }
     .contact-item { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 28px; }
     .contact-ico { font-size: 1.2rem; color: var(--gold); margin-top: 2px; flex-shrink: 0; }
@@ -294,7 +286,6 @@
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
-      .contact-layout { margin-top: 0; }
       .form-group-row { flex-direction: column; gap: 18px; }
       nav { padding: 0 24px; }
       .nav-links, .nav-cta { display: none; }
@@ -488,7 +479,7 @@
   </div>
 </section>
 
-<!-- CONTACT CORRIGÉ ALIGNÉ -->
+<!-- CONTACT CORRIGÉ -->
 <section id="contact">
   <div class="section-inner">
     <div class="section-header reveal">
@@ -507,6 +498,7 @@
         </div>
       </div>
       <div class="form-wrap reveal-right">
+        <!-- FORMULAIRE CORRIGÉ SELON L'IMAGE -->
         <form id="contactForm" action="https://formspree.io/f/mrejpown" method="POST">
           <div class="form-group-row">
             <div class="form-group">

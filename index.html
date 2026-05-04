@@ -26,8 +26,8 @@
     body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); font-size: 16px; line-height: 1.7; overflow-x: hidden; cursor: none; }
 
     /* CUSTOM CURSOR */
-    .cursor { position: fixed; width: 10px; height: 10px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform 0.08s, width 0.2s, height 0.2s, opacity 0.2s; }
-    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1.5px solid var(--gold); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: transform 0.18s ease, width 0.2s, height 0.2s, opacity 0.2s; opacity: 0.5; }
+    .cursor { position: fixed; width: 10px; height: 10px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform 0.08s; }
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1.5px solid var(--gold); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: transform 0.08s; }
     body:hover .cursor { opacity: 1; }
     a:hover ~ .cursor, button:hover ~ .cursor { width: 16px; height: 16px; }
 
@@ -46,7 +46,7 @@
     .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transition: transform .3s; }
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
     .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
-    .nav-cta { font-family: 'DM Sans', sans-serif; padding: 9px 22px; border: 1px solid var(--gold); color: var(--gold); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: background .2s, color .2s; }
+    .nav-cta { font-family: 'DM Sans', sans-serif; padding: 9px 22px; border: 1px solid var(--gold); color: var(--gold); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; transition: background .2s, color .2s; cursor: pointer; }
     .nav-cta:hover { background: var(--gold); color: var(--navy); }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 600; padding: 8px; }
     .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: transform .3s, opacity .3s; }
@@ -113,7 +113,7 @@
       opacity: 0; animation: fadeUp .8s .7s forwards;
     }
     .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; opacity: 0; animation: fadeUp .8s .85s forwards; justify-content: center; }
-    .btn { display: inline-block; padding: 14px 34px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; transition: all .25s; cursor: none; }
+    .btn { display: inline-block; padding: 14px 34px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; border-radius: 0; transition: all .2s; cursor: pointer; }
     .btn-outline { border: 1.5px solid rgba(201,168,76,.5); color: var(--gold); }
     .btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,.08); }
     .btn-solid { background: var(--gold); color: var(--navy); border: 1.5px solid var(--gold); }
@@ -288,7 +288,7 @@
     .form-group textarea { resize: vertical; min-height: 130px; }
     .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,.2); }
     .form-submit { display: inline-flex; align-items: center; gap: 10px; }
-    .submit-btn { padding: 15px 36px; background: var(--gold); color: var(--navy); font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; border: none; cursor: none; transition: background .2s, transform .2s; }
+    .submit-btn { padding: 15px 36px; background: var(--gold); color: var(--navy); font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; border: none; cursor: pointer; transition: background .2s, transform .2s; }
     .submit-btn:hover { background: var(--gold-lt); transform: translateY(-2px); }
     .submit-btn.success { background: #2a7a4b; cursor: default; }
 
@@ -376,7 +376,7 @@
     <h1 class="hero-name">Aurélien<em>Laporte</em></h1>
     <p class="hero-title">Étudiant DCG — Futur alternant DSCG au cabinet COGEC · Soissons · Septembre 2026</p>
     <div class="hero-divider"></div>
-    <p class="hero-desc">Passionné par la comptabilité, la gestion et la fiscalité, je prépare mon DCG en formation initiale. Dès septembre 2026, je rejoins le cabinet COGEC en alternance pour débuter le DSCG.</p>
+    <p class="hero-desc">Passionné par la comptabilité, la gestion et la fiscalité, je prépare mon DCG en formation initiale. Dès septembre 2026, je rejoins le cabinet COGEC en alternance pour préparer mon DSCG.</p>
     <div class="hero-btns">
       <a href="#experiences" class="btn btn-outline">Mon parcours</a>
       <a href="#contact" class="btn btn-solid">Me contacter</a>
@@ -384,12 +384,7 @@
   </div>
   <div class="hero-right">
     <div class="hero-photo-wrap">
-      <div class="hero-photo-placeholder">
-        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-        </svg>
-        <span>Photo</span>
-      </div>
+      <img src="IMG_4833.JPG" alt="Photo de profil - Aurélien Laporte" class="hero-photo">
     </div>
   </div>
   
@@ -410,8 +405,8 @@
       <div class="reveal">
         <p class="about-lead">Étudiant en troisième année de DCG en formation initiale, je rejoindrai le cabinet COGEC à Soissons en alternance dès septembre 2026 pour préparer le DSCG.</p>
         <div class="about-body">
-          <p>Mon parcours académique en DCG m'a permis de développer des bases solides en comptabilité générale, fiscalité et gestion, renforcées par 9 semaines de stage au cabinet COGEC. Cette expérience concrète m'a confirmé ma vocation pour le métier de comptable.</p>
-          <p>Rigoureux, organisé et curieux, j'apporte également une sensibilité aux outils numériques, que j'exploite dans mes projets personnels (Welyb, Amicompta, IsaCompta) et mes travaux académiques.</p>
+          <p>Mon parcours académique en DCG m'a permis de développer des bases solides en comptabilité générale, fiscalité et gestion, renforcées par 9 semaines de stage au cabinet COGEC. Cette expérience pratique m'a donné une vision concrète du métier et une meilleure compréhension des enjeux comptables en entreprise.</p>
+          <p>Rigoureux, organisé et curieux, j'apporte également une sensibilité aux outils numériques, que j'exploite dans mes projets personnels (Welyb, Amicompta, IsaCompta) et mes travaux académiques. Je suis à l'aise dans les environnements structurés et j'aime travailler en équipe.</p>
         </div>
         <div class="about-info">
           <div class="about-row"><span class="about-key">Localisation</span><span class="about-val">Braine (02), Aisne</span></div>
@@ -633,7 +628,7 @@
           <div class="exp-company">Association étudiante · 2025 – à présent</div>
         </div>
         <div class="exp-badge">Bénévolat</div>
-        <div class="exp-desc">Suivi comptable et financier de l'association, gestion budgétaire, contrôle des flux de trésorerie et participation aux décisions financières en collaboration avec le bureau associatif.</div>
+        <div class="exp-desc">Suivi comptable et financier de l'association, gestion budgétaire, contrôle des flux de trésorerie et participation aux décisions financières en collaboration avec les autres membres du bureau.</div>
         <div class="exp-tags">
           <span class="tag">Comptabilité associative</span>
           <span class="tag">Gestion budgétaire</span>
@@ -813,29 +808,31 @@
   document.querySelectorAll('.skill-card').forEach(c => skillIo.observe(c));
 
   /* FORM — Formspree */
-  document.getElementById('contactForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const btn = document.getElementById('submitBtn');
-    btn.textContent = 'Envoi en cours…';
-    btn.disabled = true;
-    try {
-      const response = await fetch(this.action, {
-        method: 'POST',
-        body: new FormData(this),
-        headers: { 'Accept': 'application/json' }
-      });
-      if (response.ok) {
-        btn.textContent = 'Message envoyé ✓';
-        btn.classList.add('success');
-        this.reset();
-        setTimeout(() => { btn.textContent = 'Envoyer le message'; btn.classList.remove('success'); btn.disabled = false; }, 5000);
-      } else {
-        btn.textContent = 'Erreur — réessayez';
+  document.addEventListener('submit', async function(e) {
+    if (e.target.action === 'https://formspree.io/f/mrejpown') {
+      e.preventDefault();
+      const btn = e.target.querySelector('.submit-btn');
+      btn.textContent = 'Envoi en cours…';
+      btn.disabled = true;
+      try {
+        const response = await fetch(e.target.action, {
+          method: 'POST',
+          body: new FormData(e.target),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          btn.textContent = 'Message envoyé ✓';
+          btn.classList.add('success');
+          e.target.reset();
+          setTimeout(() => { btn.textContent = 'Envoyer le message'; btn.classList.remove('success'); btn.disabled = false; }, 5000);
+        } else {
+          btn.textContent = 'Erreur — réessayez';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Erreur réseau';
         btn.disabled = false;
       }
-    } catch {
-      btn.textContent = 'Erreur réseau';
-      btn.disabled = false;
     }
   });
 </script>
